@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {IProduct} from "./models/product";
 import {products, products as data} from "./data/products";
 import {ProductsService} from "./services/products.service";
+import {Observable, tap} from "rxjs";
 
 @Component({
   selector: 'app-root',
@@ -10,17 +11,20 @@ import {ProductsService} from "./services/products.service";
 })
 export class AppComponent implements OnInit{
   title = 'ANGULAR 14  2022';
-  products: IProduct[] = [];
+  //products: IProduct[] = [];
   loading = false;
-
+  products$: Observable<IProduct[]>
   constructor(private productsService: ProductsService) {
   }
   ngOnInit(): void {
     this.loading = true;
-    this.productsService.getAll().subscribe(products => {
+    this.products$ = this.productsService.getAll().pipe(
+      tap(()=> this.loading = false)
+    );
+   /* this.productsService.getAll().subscribe(products => {
       this.products = products;
       this.loading = false;
-    })
+    })*/
   }
 
 }
