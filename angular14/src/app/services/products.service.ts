@@ -22,7 +22,7 @@ products: IProduct[] = [];
 getAll():Observable<IProduct[]>{
   return this.http.get<IProduct[]>('https://fakestoreapi.com/products',{
     params: new HttpParams({
-      fromObject: {limit:15}
+      fromObject: {limit:6}
     })
   }).pipe(
     delay(2000),
