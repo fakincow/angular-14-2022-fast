@@ -12,23 +12,23 @@ import {ModalService} from "./services/modal.service";
 })
 export class AppComponent implements OnInit{
   title = 'ANGULAR 14  2022';
-  //products: IProduct[] = [];
+  products: IProduct[] = [];
   loading = false;
   term ='';
-  products$: Observable<IProduct[]>
-  constructor(private productsService: ProductsService,
+  //products$: Observable<IProduct[]>
+  constructor(public productsService: ProductsService,
   public modalService: ModalService
   ) {
   }
   ngOnInit(): void {
     this.loading = true;
-    this.products$ = this.productsService.getAll().pipe(
+   /* this.products$ = this.productsService.getAll().pipe(
       tap(()=> this.loading = false)
-    );
-   /* this.productsService.getAll().subscribe(products => {
-      this.products = products;
+    );*/
+    this.productsService.getAll().subscribe(() => {
+    //  this.products = products;
       this.loading = false;
-    })*/
+    })
   }
 
 }
