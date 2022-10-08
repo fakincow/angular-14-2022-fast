@@ -13,6 +13,7 @@ export class AppComponent implements OnInit{
   title = 'ANGULAR 14  2022';
   //products: IProduct[] = [];
   loading = false;
+  term ='';
   products$: Observable<IProduct[]>
   constructor(private productsService: ProductsService) {
   }
